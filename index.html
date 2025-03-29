@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Telescope</title>
-    <link rel="stylesheet" href="telescope-style.css">
+    <title>Telescope GFL</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Virtual Telescope</h1>
+            <h1>Telescope GFL</h1>
             <div class="time-display">
-                <span id="current-date">Date: --/--/----</span>
-                <span id="current-time">Time: --:--:--</span>
+                <span id="current-date">--/--/----</span>
+                <span id="current-time">--:--:--</span>
             </div>
         </header>
         
         <div class="telescope-view">
             <div class="controls">
-                <select id="object-selector">
-                    <option value="planets">Planets</option>
-                    <option value="galaxies">Galaxies</option>
-                    <option value="nebulae">Nebulae</option>
-                    <option value="stars">Stars</option>
+                <select id="object-select">
+                    <option value="sun">Sun</option>
+                    <option value="moon">Moon</option>
+                    <option value="mars">Mars</option>
+                    <option value="jupiter">Jupiter</option>
+                    <option value="saturn">Saturn</option>
                 </select>
-                <select id="specific-object">
-                    <option value="default">Select object...</option>
-                </select>
-                <button id="capture-btn">Capture Image</button>
+                <button id="refresh-btn">Refresh View</button>
+                <button id="auto-update-btn">Auto Update</button>
             </div>
             
             <div class="viewport">
-                <img id="telescope-image" src="https://images-assets.nasa.gov/image/PIA12348/PIA12348~thumb.jpg" alt="Space object">
+                <img id="telescope-image" src="placeholder.jpg" alt="Telescope view">
+                <div class="auto-update-indicator">Auto-updating</div>
                 <div class="loading-overlay">
                     <div class="spinner"></div>
                     <p>Adjusting telescope...</p>
@@ -39,24 +39,33 @@
             </div>
             
             <div class="info-panel">
-                <h2 id="object-name">Saturn</h2>
-                <p id="object-description">Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter.</p>
+                <h2 id="object-name">Object Name</h2>
+                <p id="object-description">Object description will appear here.</p>
                 <div class="object-data">
-                    <p id="distance">Distance from Earth: 1.2B km</p>
-                    <p id="size">Diameter: 116,464 km</p>
-                    <p id="last-updated">Last image update: <span id="update-time">Just now</span></p>
+                    <div class="data-item">
+                        <strong>Distance:</strong>
+                        <span id="object-distance">--</span>
+                    </div>
+                    <div class="data-item">
+                        <strong>Size:</strong>
+                        <span id="object-size">--</span>
+                    </div>
+                    <div class="data-item">
+                        <strong>Temperature:</strong>
+                        <span id="object-temp">--</span>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="gallery">
-            <h3>Recent Captures</h3>
-            <div id="recent-images" class="recent-images">
-                <!-- Recent images will be added here dynamically -->
+            <h3>Recent Observations</h3>
+            <div class="recent-images" id="recent-images-container">
+                <!-- Images will be added here dynamically -->
             </div>
         </div>
     </div>
-
-    <script src="telescope-script.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
