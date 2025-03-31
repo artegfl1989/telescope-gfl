@@ -3,65 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Energy Tracker</title>
+    <meta name="description" content="Piattaforma di Guadagno Energetico - Genera valore mantenendo lo schermo acceso">
+    <title>Piattaforma di Guadagno Energetico</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Script Solana Web3.js -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Solar Energy Tracker</h1>
-        <p>Usa i sensori del tuo smartphone per misurare l'intensità solare</p>
-    </header>
-
-    <main>
-        <section id="sensor-section">
-            <div class="sensor-container">
-                <div id="solar-panel">
-                    <div class="panel-surface"></div>
-                </div>
-                <div id="readings">
-                    <h2>Letture Sensore</h2>
-                    <p>Intensità Luce: <span id="light-value">0</span> lux</p>
-                    <p>Orientamento: <span id="orientation-value">N/A</span></p>
-                    <p>Energia Potenziale: <span id="energy-value">0</span> kWh</p>
-                </div>
+    <div class="container">
+        <h1><i class="fas fa-bolt"></i> Piattaforma di Guadagno Energetico</h1>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3><i class="fas fa-clock"></i> Tempo Attivo</h3>
+                <p id="time-active">00:00:00</p>
             </div>
-            <button id="start-sensor">Attiva Sensori</button>
-            <button id="stop-sensor" disabled>Ferma Sensori</button>
-        </section>
-
-        <section id="stats-section">
-            <h2>Statistiche Energia</h2>
-            <div class="stats-container">
-                <div class="stat-box">
-                    <h3>Energia Oggi</h3>
-                    <p><span id="today-energy">0</span> kWh</p>
-                </div>
-                <div class="stat-box">
-                    <h3>Energia Totale</h3>
-                    <p><span id="total-energy">0</span> kWh</p>
-                </div>
-                <div class="stat-box">
-                    <h3>Valore Stimato</h3>
-                    <p><span id="energy-value-eur">0</span> €</p>
-                </div>
+            <div class="stat-box">
+                <h3><i class="fas fa-battery-full"></i> Energia Generata</h3>
+                <p id="energy-generated">0 kWh</p>
             </div>
-        </section>
-
-        <section id="payment-section">
-            <h2>Vendi la tua Energia</h2>
-            <p>Basato sulle tue letture, puoi vendere l'energia potenziale generata.</p>
-            <div class="payment-container">
-                <input type="number" id="amount" min="1" value="5" step="1">
-                <a id="paypal-link" href="https://paypal.me/artegfl?country.x=IT&locale.x=it_IT" target="_blank" class="payment-button">Paga con PayPal</a>
+            <div class="stat-box">
+                <h3><i class="fas fa-euro-sign"></i> Valore Generato</h3>
+                <p id="value-generated">0.00 €</p>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>Solar Energy Tracker &copy; 2023</p>
-        <p><small>Nota: Questa applicazione utilizza i sensori del dispositivo per misurazioni educative.</small></p>
-    </footer>
+        <div class="wallet-container">
+            <h3><i class="fas fa-wallet"></i> Indirizzo Wallet</h3>
+            <div class="wallet-display">
+                <p class="wallet-address">SNDNpccEWukZ3fmERjcJ5J51iRXd8mVC9C</p>
+                <button id="copy-wallet" title="Copia indirizzo wallet"><i class="fas fa-copy"></i></button>
+            </div>
+            <div class="wallet-info">
+                <p>Per ricevere i pagamenti, è necessario avere un wallet Solana (come Phantom) installato nel browser.</p>
+                <a href="https://phantom.app/" target="_blank" class="wallet-link">
+                    <i class="fas fa-external-link-alt"></i> Installa Phantom Wallet
+                </a>
+            </div>
+            <button id="connect-wallet" class="secondary-btn"><i class="fas fa-plug"></i> Connetti Wallet</button>
+            <button id="transfer-funds" class="primary-btn"><i class="fas fa-exchange-alt"></i> Trasferisci Fondi</button>
+            <p id="transfer-status"></p>
+        </div>
 
+        <div class="history-container">
+            <h3><i class="fas fa-history"></i> Cronologia Transazioni</h3>
+            <ul id="transaction-history">
+                <!-- Le transazioni verranno aggiunte qui -->
+            </ul>
+        </div>
+        
+        <div class="info-container">
+            <h3><i class="fas fa-info-circle"></i> Come Funziona</h3>
+            <ol>
+                <li>Mantieni questa pagina aperta per generare energia virtuale</li>
+                <li>Ogni 50 secondi, genererai 5 kWh di energia (equivalente a 0.80 €)</li>
+                <li>Connetti il tuo wallet Solana per ricevere i pagamenti</li>
+                <li>Clicca su "Trasferisci Fondi" per inviare il valore generato al tuo wallet</li>
+                <li>Verifica le tue transazioni nella cronologia o sull'explorer Solana</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Piattaforma di Guadagno Energetico. Tutti i diritti riservati.</p>
+            <p>Questo servizio utilizza la blockchain Solana per i pagamenti.</p>
+        </footer>
+    </div>
+    
+    <!-- Script principale -->
     <script src="script.js"></script>
 </body>
 </html>
