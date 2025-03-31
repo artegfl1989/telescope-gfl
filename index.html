@@ -45,16 +45,29 @@
             <div class="controls">
                 <button id="optimize-btn">Ottimizza Pannello</button>
                 <button id="sell-btn" class="sell">Vendi Energia</button>
-                <!-- Add this after the market section -->
-                <div class="wallet-section">
-                    <h3>SolarCoin Wallet</h3>
-                    <div class="wallet-address">SLR_8i2agvv3o0w</div>
-                    <button id="wallet-btn" class="wallet">Invia SolarCoin</button>
-                </div>
+            </div>
+        </div>
+
+        <!-- Updated wallet section -->
+        <div class="wallet-section">
+            <h2>Solana Wallet</h2>
+            <div class="wallet-info">
+                <p>Il tuo wallet: <span class="wallet-address">SNDNpccEWukZ3fmERjcJ5J51iRXd8mVC9C</span></p>
+                <p>Stato: <span id="transaction-status">Pronto per il trasferimento</span></p>
+            </div>
+            <div class="transaction-controls">
+                <button id="wallet-btn" class="wallet">Trasferisci Istantaneamente</button>
+                <div id="transaction-progress" class="progress-bar"></div>
+            </div>
+            <div id="transaction-history" class="history">
+                <h3>Ultime Transazioni</h3>
+                <div id="recent-transactions"></div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Add Solana Web3.js -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
