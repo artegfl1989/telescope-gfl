@@ -170,9 +170,17 @@ function adjustSolarPanel() {
 
 // Update PayPal link with current amount
 function updatePayPalLink() {
+    // Calculate the monetary value of the energy generated
+    const energyValue = totalEnergy * energyRate;
+    // Set the amount input to the current energy value (rounded to 2 decimal places)
+    amountInput.value = energyValue.toFixed(2);
+    // Update the PayPal link with the calculated amount
     const amount = amountInput.value;
     const baseUrl = "https://paypal.me/artegfl";
     paypalLink.href = `${baseUrl}/${amount}?country.x=IT&locale.x=it_IT`;
+    
+    // Update the button text to show the current amount
+    paypalLink.textContent = `Incassa €${amount} con PayPal`;
 }
 
 // Start monitoring
@@ -276,6 +284,44 @@ async function requestSensorPermission() {
     }
 }
 
+// Add a function to withdraw energy
+function withdrawEnergy() {
+    if (totalEnergy <= 0) {
+        alert('Non hai energia sufficiente da prelevare.');
+        return;
+    }
+    
+    const energyValue = totalEnergy * energyRate;
+    const amount = energyValue.toFixed(2);
+    
+    // Confirm the withdrawal
+    if (confirm(`Stai per prelevare €${amount} (${totalEnergy.toFixed(2)} kWh). Continua?`)) {
+        // Open PayPal in a new window
+        window.open(paypalLink.href, '_blank');
+        
+        // Reset the energy counters after successful withdrawal
+        setTimeout(() => {
+            if (confirm('Hai completato il pagamento? Questo resetterà il tuo contatore di energia.')) {
+                totalEnergy = 0;
+                todayEnergy = 0;
+                todayEnergyEl.textContent = '0';
+                totalEnergyEl.textContent = '0';
+                energyValueEur.textContent = '0';
+                updatePayPalLink();
+                
+                // Save the reset data
+                localStorage.setItem('energyGeneratorData', JSON.stringify({
+                    totalScreenTime,
+                    todayScreenTime,
+                    totalEnergy,
+                    todayEnergy,
+                    lastUpdated: new Date().toISOString()
+                }));
+            }
+        }, 5000); // Give them 5 seconds to complete the payment
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Add CSS for energy generation animation
@@ -322,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startButton.addEventListener('click', startMonitoring);
     stopButton.addEventListener('click', stopMonitoring);
     amountInput.addEventListener('change', updatePayPalLink);
+    withdrawButton.addEventListener('click', withdrawEnergy);
     
     // Initialize sensors
     requestSensorPermission();
