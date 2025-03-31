@@ -92,6 +92,61 @@ body {
     border-radius: 8px;
 }
 
+.wallet-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #2c3e50;
+    border-radius: 8px;
+    color: white;
+}
+
+.wallet-address {
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    word-break: break-all;
+}
+
+button.wallet {
+    background-color: #f39c12;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button.wallet:hover {
+    background-color: #d68910;
+}
+
+button.wallet::before {
+    content: "⚡";
+}
+
+button.wallet.sending {
+    background-color: #7f8c8d;
+    position: relative;
+    overflow: hidden;
+}
+
+button.wallet.sending::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+}
+
 .market-title {
     margin-bottom: 1rem;
     color: #2c3e50;
