@@ -48,15 +48,16 @@
             </div>
         </div>
 
-        <!-- Updated wallet section -->
+        <!-- Updated Ethereum wallet section -->
         <div class="wallet-section">
-            <h2>Solana Wallet</h2>
+            <h2>Ethereum Wallet</h2>
             <div class="wallet-info">
-                <p>Il tuo wallet: <span class="wallet-address">SNDNpccEWukZ3fmERjcJ5J51iRXd8mVC9C</span></p>
-                <p>Stato: <span id="transaction-status">Pronto per il trasferimento</span></p>
+                <p>Wallet ETH: <span class="wallet-address">0xe8Abb5B55745A0f87918d0338d6d400a3844FC1E</span></p>
+                <p>Stato: <span id="metamask-status">Connetti MetaMask</span></p>
             </div>
             <div class="transaction-controls">
-                <button id="wallet-btn" class="wallet">Trasferisci Istantaneamente</button>
+                <button id="connect-metamask" class="metamask-btn">Connect MetaMask</button>
+                <button id="wallet-btn" class="wallet" disabled>Trasferisci ETH</button>
                 <div id="transaction-progress" class="progress-bar"></div>
             </div>
             <div id="transaction-history" class="history">
@@ -66,8 +67,8 @@
         </div>
     </div>
 
-    <!-- Add Solana Web3.js -->
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <!-- Add Web3 and Ethereum dependencies -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <script src="script.js"></script>
 </body>
 </html>
