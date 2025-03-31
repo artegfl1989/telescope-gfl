@@ -93,11 +93,15 @@ body {
 }
 
 .wallet-section {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
     background-color: #2c3e50;
     border-radius: 8px;
     color: white;
+}
+
+.wallet-info {
+    margin-bottom: 1rem;
 }
 
 .wallet-address {
@@ -107,14 +111,84 @@ body {
     border-radius: 4px;
     margin: 0.5rem 0;
     word-break: break-all;
+    font-size: 0.9em;
 }
 
-button.wallet {
-    background-color: #f39c12;
-    margin-left: 10px;
+.transaction-controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.metamask-btn {
+    background-color: #f6851b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
+}
+
+.metamask-btn::before {
+    content: "🦊";
+}
+
+.metamask-btn:hover {
+    background-color: #e2761b;
+}
+
+.transaction-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.transaction-item a {
+    color: #3498db;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.transaction-item a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+.progress-bar {
+    height: 4px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.progress-bar.active::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 30%;
+    background-color: #f6851b;
+    animation: progress 1.5s infinite linear;
+}
+
+@keyframes progress {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+}
+
+/* Remove duplicate wallet button styles */
+button.wallet {
+    background-color: #f39c12;
+    margin-left: 0;
 }
 
 button.wallet:hover {
@@ -223,4 +297,74 @@ button.wallet:hover {
 button:disabled {
     background-color: #95a5a6;
     cursor: not-allowed;
+}
+
+.card-transfer {
+    border-left: 4px solid #00b2e3;
+    background: rgba(0, 178, 227, 0.05);
+}
+
+.free-tag {
+    background-color: #2ecc71;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.balance {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.card-type {
+    background-color: #00b2e3;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.card-status {
+    background-color: #2ecc71;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.paypal-transfer {
+    border-left: 4px solid #0070ba;
+    background: rgba(0, 112, 186, 0.05);
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.instant-tag {
+    background-color: #2ecc71;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-right: 5px;
+}
+
+.free-tag {
+    background-color: #0070ba;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.account-type,
+.account-status,
+.transfer-type {
+    background-color: #0070ba;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
 }
