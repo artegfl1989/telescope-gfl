@@ -3,69 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telescope GFL</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Solar Panel Monitor</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Telescope GFL</h1>
-            <div class="time-display">
-                <span id="current-date">--/--/----</span>
-                <span id="current-time">--:--:--</span>
-            </div>
-        </header>
-        
-        <div class="telescope-view">
-            <div class="controls">
-                <select id="object-select">
-                    <option value="sun">Sun</option>
-                    <option value="moon">Moon</option>
-                    <option value="mars">Mars</option>
-                    <option value="jupiter">Jupiter</option>
-                    <option value="saturn">Saturn</option>
-                </select>
-                <button id="refresh-btn">Refresh View</button>
-                <button id="auto-update-btn">Auto Update</button>
-            </div>
-            
-            <div class="viewport">
-                <img id="telescope-image" src="placeholder.jpg" alt="Telescope view">
-                <div class="auto-update-indicator">Auto-updating</div>
-                <div class="loading-overlay">
-                    <div class="spinner"></div>
-                    <p>Adjusting telescope...</p>
-                </div>
-            </div>
-            
-            <div class="info-panel">
-                <h2 id="object-name">Object Name</h2>
-                <p id="object-description">Object description will appear here.</p>
-                <div class="object-data">
-                    <div class="data-item">
-                        <strong>Distance:</strong>
-                        <span id="object-distance">--</span>
-                    </div>
-                    <div class="data-item">
-                        <strong>Size:</strong>
-                        <span id="object-size">--</span>
-                    </div>
-                    <div class="data-item">
-                        <strong>Temperature:</strong>
-                        <span id="object-temp">--</span>
-                    </div>
-                </div>
-            </div>
+        <div class="solar-panel">
+            <div class="cell" data-energy="0"></div>
+            <div class="cell" data-energy="0"></div>
+            <div class="cell" data-energy="0"></div>
+            <div class="cell" data-energy="0"></div>
+            <div class="cell" data-energy="0"></div>
+            <div class="cell" data-energy="0"></div>
         </div>
         
-        <div class="gallery">
-            <h3>Recent Observations</h3>
-            <div class="recent-images" id="recent-images-container">
-                <!-- Images will be added here dynamically -->
+        <div class="stats">
+            <h2>Solar Panel Monitor</h2>
+            <div class="energy-stats">
+                <p>Current Energy: <span id="current-energy">0</span> kWh</p>
+                <p>Earnings: €<span id="earnings">0.00</span></p>
             </div>
+            <button id="simulate">Simulate Sunlight</button>
         </div>
     </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
