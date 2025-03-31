@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let weatherCondition = 'sunny'; // Default weather
     let deviceOrientation = { alpha: 0, beta: 0, gamma: 0 };
     let lightLevel = 0;
+    let walletAddress = 'SNDNpccEWukZ3fmERjcJ5J51iRXd8mVC9C'; // Your Solana wallet address
     
     // DOM elements
     const solarPanel = document.getElementById('solar-panel');
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const weatherStatusEl = document.getElementById('weather-status');
     const sunPositionEl = document.getElementById('sun-position');
     const sunIndicator = document.getElementById('sun-indicator');
+    const walletBtn = document.getElementById('wallet-btn');
     
     // Create solar cells
     function createSolarCells() {
@@ -470,6 +472,132 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Send earnings to wallet
+    async function sendToWallet() {
+        if (totalEarnings <= 0) {
+            alert('Non hai guadagni da trasferire al wallet!');
+            return;
+        }
+        
+        try {
+            // Show loading state
+            walletBtn.disabled = true;
+            walletBtn.textContent = 'Trasferimento in corso...';
+            
+            // Convert earnings to SolarCoin (fictional conversion rate: 1 EUR = 10 SolarCoin)
+            const solarCoinAmount = totalEarnings * 10;
+            
+            // Check if we're on a Xiaomi MIUI device for native integration
+            const isXiaomiDevice = /MIUI/.test(navigator.userAgent);
+            
+            if (isXiaomiDevice && window.MiWalletBridge) {
+                // Use Xiaomi's native wallet integration if available
+                await sendViaMiWallet(solarCoinAmount);
+            } else if (window.solana && window.solana.isPhantom) {
+                // Use Phantom wallet if available
+                await sendViaPhantomWallet(solarCoinAmount);
+            } else {
+                // Use Web3 API as fallback
+                await sendViaWeb3(solarCoinAmount);
+            }
+            
+            // Record the transaction
+            saveWalletTransaction(solarCoinAmount);
+            
+            // Reset total earnings after successful transfer
+            const previousEarnings = totalEarnings;
+            totalEarnings = 0;
+            totalEarningsEl.textContent = '0.00';
+            
+            alert(`Trasferimento completato! ${(previousEarnings).toFixed(2)}€ (${solarCoinAmount.toFixed(2)} SolarCoin) inviati al wallet ${walletAddress}`);
+        } catch (error) {
+            console.error('Errore durante il trasferimento:', error);
+            alert(`Errore durante il trasferimento: ${error.message}`);
+        } finally {
+            // Reset button state
+            walletBtn.disabled = false;
+            walletBtn.textContent = 'Invia al Wallet';
+        }
+    }
+    
+    // Send via Xiaomi wallet integration
+    async function sendViaMiWallet(amount) {
+        return new Promise((resolve, reject) => {
+            try {
+                console.log(`Sending ${amount} SolarCoin to ${walletAddress} via Xiaomi Wallet`);
+                
+                // This is a placeholder for Xiaomi wallet integration
+                // In a real implementation, you would use their SDK
+                setTimeout(() => {
+                    // Simulate successful transaction
+                    resolve({
+                        txid: 'mi_' + Math.random().toString(36).substring(2, 15),
+                        status: 'success'
+                    });
+                }, 2000);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    // Send via Phantom wallet (Solana)
+    async function sendViaPhantomWallet(amount) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                console.log(`Sending ${amount} SolarCoin to ${walletAddress} via Phantom Wallet`);
+                
+                // Check if Phantom wallet is connected
+                const resp = await window.solana.connect();
+                const publicKey = resp.publicKey.toString();
+                
+                // This is a placeholder for actual Solana transaction
+                // In a real implementation, you would create and sign a transaction
+                setTimeout(() => {
+                    resolve({
+                        txid: 'sol_' + Math.random().toString(36).substring(2, 15),
+                        status: 'success'
+                    });
+                }, 2000);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    // Send via Web3 API (fallback)
+    async function sendViaWeb3(amount) {
+        return new Promise((resolve, reject) => {
+            try {
+                console.log(`Sending ${amount} SolarCoin to ${walletAddress} via Web3`);
+                
+                // This is a placeholder for Web3 integration
+                // In a real implementation, you would use a Web3 provider
+                setTimeout(() => {
+                    // Simulate successful transaction
+                    resolve({
+                        txid: 'web3_' + Math.random().toString(36).substring(2, 15),
+                        status: 'success'
+                    });
+                }, 2000);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    // Save wallet transaction to local storage
+    function saveWalletTransaction(amount) {
+        const transactions = JSON.parse(localStorage.getItem('walletTransactions') || '[]');
+        transactions.push({
+            date: new Date().toISOString(),
+            amount: amount,
+            wallet: walletAddress,
+            txid: 'sc_' + Math.random().toString(36).substring(2, 15)
+        });
+        localStorage.setItem('walletTransactions', JSON.stringify(transactions));
+    }
+    
     // Initialize the application
     function init() {
         createSolarCells();
@@ -477,6 +605,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set up event listeners
         optimizeBtn.addEventListener('click', toggleOptimization);
         sellBtn.addEventListener('click', sellEnergy);
+        if (walletBtn) {
+            walletBtn.addEventListener('click', sendToWallet);
+        } else {
+            console.error('Wallet button not found in the DOM');
+        }
         
         // Initialize sensors
         initSensors();

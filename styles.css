@@ -154,3 +154,18 @@ button.sell:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* Add this after the sell button styles */
+button.wallet {
+    background-color: #9b59b6;
+    margin-left: 10px;
+}
+
+button.wallet:hover {
+    background-color: #8e44ad;
+}
+
+button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
