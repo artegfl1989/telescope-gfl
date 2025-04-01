@@ -3,74 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Piattaforma di Guadagno Energetico - Genera valore mantenendo lo schermo acceso">
-    <title>Piattaforma di Guadagno Energetico</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Script Solana Web3.js -->
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <title>Telescopio Virtuale - Galassie Generate</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1><i class="fas fa-bolt"></i> Piattaforma di Guadagno Energetico</h1>
-        
-        <div class="stats-container">
-            <div class="stat-box">
-                <h3><i class="fas fa-clock"></i> Tempo Attivo</h3>
-                <p id="time-active">00:00:00</p>
-            </div>
-            <div class="stat-box">
-                <h3><i class="fas fa-battery-full"></i> Energia Generata</h3>
-                <p id="energy-generated">0 kWh</p>
-            </div>
-            <div class="stat-box">
-                <h3><i class="fas fa-euro-sign"></i> Valore Generato</h3>
-                <p id="value-generated">0.00 €</p>
-            </div>
+    <header>
+        <h1>Telescopio Virtuale</h1>
+        <div id="datetime"></div>
+    </header>
+
+    <main>
+        <div class="controls">
+            <button id="generateGalaxy">Genera Nuova Galassia</button>
+            <button id="captureImage">Cattura Immagine</button>
         </div>
 
-        <div class="wallet-container">
-            <h3><i class="fas fa-wallet"></i> Indirizzo Wallet</h3>
-            <div class="wallet-display">
-                <p class="wallet-address">SNDNpccEWukZ3fmERjcJ5J51iRXd8mVC9C</p>
-                <button id="copy-wallet" title="Copia indirizzo wallet"><i class="fas fa-copy"></i></button>
-            </div>
-            <div class="wallet-info">
-                <p>Per ricevere i pagamenti, è necessario avere un wallet Solana (come Phantom) installato nel browser.</p>
-                <a href="https://phantom.app/" target="_blank" class="wallet-link">
-                    <i class="fas fa-external-link-alt"></i> Installa Phantom Wallet
-                </a>
-            </div>
-            <button id="connect-wallet" class="secondary-btn"><i class="fas fa-plug"></i> Connetti Wallet</button>
-            <button id="transfer-funds" class="primary-btn"><i class="fas fa-exchange-alt"></i> Trasferisci Fondi</button>
-            <p id="transfer-status"></p>
+        <div class="galaxy-container">
+            <canvas id="galaxyCanvas"></canvas>
         </div>
 
-        <div class="history-container">
-            <h3><i class="fas fa-history"></i> Cronologia Transazioni</h3>
-            <ul id="transaction-history">
-                <!-- Le transazioni verranno aggiunte qui -->
-            </ul>
+        <div class="gallery" id="gallery">
+            <h2>Galleria Galassie</h2>
+            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
-        
-        <div class="info-container">
-            <h3><i class="fas fa-info-circle"></i> Come Funziona</h3>
-            <ol>
-                <li>Mantieni questa pagina aperta per generare energia virtuale</li>
-                <li>Ogni 50 secondi, genererai 5 kWh di energia (equivalente a 0.80 €)</li>
-                <li>Connetti il tuo wallet Solana per ricevere i pagamenti</li>
-                <li>Clicca su "Trasferisci Fondi" per inviare il valore generato al tuo wallet</li>
-                <li>Verifica le tue transazioni nella cronologia o sull'explorer Solana</li>
-            </ol>
-        </div>
-        
-        <footer>
-            <p>&copy; 2023 Piattaforma di Guadagno Energetico. Tutti i diritti riservati.</p>
-            <p>Questo servizio utilizza la blockchain Solana per i pagamenti.</p>
-        </footer>
-    </div>
-    
-    <!-- Script principale -->
+    </main>
+
+    <footer>
+        <p>Generatore di Galassie AI - Ispirato dal Telescopio Hubble</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
